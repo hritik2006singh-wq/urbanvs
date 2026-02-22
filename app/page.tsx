@@ -38,7 +38,7 @@ export default function Home() {
             </div>
           </MotionSection>
 
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             <MotionSection delay={0.2}>
               <Link href="/services/social-media-marketing" className="group block h-full">
                 <div className="rounded-2xl p-8 bg-white/40 backdrop-blur-xl border border-white/30 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full flex flex-col">
@@ -72,6 +72,25 @@ export default function Home() {
                   </h3>
                   <p className="text-muted leading-relaxed flex-grow">
                     Premium business photography services, commercial video production, and branding visuals for small business.
+                  </p>
+                </div>
+              </Link>
+            </MotionSection>
+
+            <MotionSection delay={0.6}>
+              <Link href="/services/website-development" className="group block h-full">
+                <div className="rounded-2xl p-8 bg-white/40 backdrop-blur-xl border border-white/30 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                  <div className="mb-4 text-indigo-500 font-semibold uppercase tracking-wider text-sm flex items-center gap-2">
+                    <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600">
+                      <span className="text-xl">W</span>
+                    </div>
+                    Build
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-primary">
+                    Website Development
+                  </h3>
+                  <p className="text-muted leading-relaxed flex-grow">
+                    Custom high-performance websites built for branding, growth, and conversions.
                   </p>
                 </div>
               </Link>

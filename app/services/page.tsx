@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BarChart3, Camera, Globe2, Zap } from "lucide-react";
+import { ArrowRight, BarChart3, Camera, Globe2, Zap, MonitorSmartphone } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Digital Growth Services for Local Businesses | UrbanVista",
@@ -33,6 +33,14 @@ const services = [
         href: "/services/photography-videography",
         color: "text-purple-600",
         bg: "bg-purple-50",
+    },
+    {
+        title: "Website Development",
+        description: "Custom high-performance websites built for growth, branding, and conversions.",
+        icon: MonitorSmartphone,
+        href: "/services/website-development",
+        color: "text-indigo-600",
+        bg: "bg-indigo-50",
     },
     {
         title: "Global Outreach",

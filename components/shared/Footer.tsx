@@ -17,10 +17,32 @@ export const Footer = () => {
 
                 <div>
                     <h3 className="text-white font-semibold mb-4">Services</h3>
-                    <ul className="space-y-2 text-sm">
-                        <li><Link href="/services" className="hover:text-primary">Marketing</Link></li>
-                        <li><Link href="/services" className="hover:text-primary">Viral Campaign</Link></li>
-                        <li><Link href="/services" className="hover:text-primary">Web Development</Link></li>
+                    <ul className="space-y-3 text-sm">
+                        <li>
+                            <Link href="/services/social-media-marketing" className="hover:text-blue-500 transition-colors duration-300">
+                                Social Media Marketing
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/services/photography-videography" className="hover:text-blue-500 transition-colors duration-300">
+                                Photography & Videography
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/services/global-outreach" className="hover:text-blue-500 transition-colors duration-300">
+                                Global Outreach
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/services/viral-campaigns" className="hover:text-blue-500 transition-colors duration-300">
+                                Viral Campaigns
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/services/website-development" className="hover:text-blue-500 transition-colors duration-300">
+                                Website Development
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
@@ -29,18 +51,24 @@ export const Footer = () => {
                     <ul className="space-y-2 text-sm">
                         <li><Link href="/about" className="hover:text-primary">About Us</Link></li>
                         <li><Link href="/contact" className="hover:text-primary">Contact</Link></li>
-                        <li><Link href="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
+                        <li><Link href="/privacy-policy" className="hover:text-primary">Privacy Policy</Link></li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 className="text-white font-semibold mb-4">Connect</h3>
                     <div className="flex gap-4">
-                        <a href="/" className="hover:text-primary"><Facebook className="w-5 h-5" /></a>
-                        <a href="/" className="hover:text-primary"><Twitter className="w-5 h-5" /></a>
-                        <a href="/" className="hover:text-primary"><Instagram className="w-5 h-5" /></a>
-                        <a href="/" className="hover:text-primary"><Linkedin className="w-5 h-5" /></a>
+                        <a href="https://www.facebook.com/UrbanVistaService" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors duration-300"><Facebook className="w-5 h-5" /></a>
+                        <a href="/" className="hover:text-blue-500 transition-colors duration-300"><Twitter className="w-5 h-5" /></a>
+                        <a href="https://www.instagram.com/urbanvista_services" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors duration-300"><Instagram className="w-5 h-5" /></a>
+                        <a href="/" className="hover:text-blue-500 transition-colors duration-300"><Linkedin className="w-5 h-5" /></a>
                     </div>
+                    <a
+                        href="mailto:urbancistaservices@gmail.com"
+                        className="block mt-3 text-sm text-gray-400 hover:text-blue-500 transition-colors duration-300"
+                    >
+                        urbancistaservices@gmail.com
+                    </a>
                 </div>
             </div>
             <div className="mt-12 text-center text-xs border-t border-white/5 pt-8">
