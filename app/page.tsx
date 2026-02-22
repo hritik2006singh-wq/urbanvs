@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   const data = {
-    title: "Transform Your Business",
+    title: "Local to Global",
     subtitle: "Futuristic digital solutions for your business.",
     portfolio: [
       { id: "1", title: "Project Alpha", imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" },

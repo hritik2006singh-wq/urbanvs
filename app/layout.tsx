@@ -4,7 +4,7 @@ import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 
 export const metadata: Metadata = {
-  title: "UrbanVista 2.0 | Transform Your Business",
+  title: "UrbanVista | Local To Global",
   description: "Futuristic digital solutions for your business.",
 };
 
