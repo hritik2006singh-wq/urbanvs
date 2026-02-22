@@ -48,13 +48,15 @@ export function ValueProp() {
                                 transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
                                 className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none"
                             >
+                                {/* Soft Contact Shadow */}
+                                <div className="absolute -bottom-[60px] ml-[40px] w-[220px] h-[40px] bg-black/30 blur-2xl rounded-full opacity-40" />
+
                                 <img
                                     src="/trust-handshake.png"
                                     alt="Trust Partnership"
-                                    className="w-[140%] h-[140%] object-contain"
+                                    className="relative z-10 w-[140%] h-[140%] object-contain"
                                     style={{
-                                        transform: 'translateY(10px)', // Visual optical center
-                                        filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.2))', // Soft realistic shadow
+                                        transform: 'translateY(65px) translateX(20px)',
                                     }}
                                     onError={(e) => {
                                         e.currentTarget.style.display = "none";
@@ -117,7 +119,7 @@ export function ValueProp() {
                             transition={{ duration: 0.8, delay: 0.65 }}
                             className="text-slate-500 text-lg leading-relaxed max-w-[420px]"
                         >
-                            You decide the price. Love it? Let’s talk.
+                            You decide the price. Love it? Let's talk.
                             <br className="hidden lg:block" /> Not feeling it? Zero commitment.
                         </motion.p>
 

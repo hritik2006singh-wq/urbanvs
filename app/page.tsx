@@ -40,35 +40,39 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-10">
             <MotionSection delay={0.2}>
-              <Link href="/services" className="block h-full">
-                <div className="rounded-2xl bg-white/40 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-8 transition-all duration-300 hover:translate-y-[-6px] hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] h-full group cursor-pointer">
-                  <div className="mb-6 w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-accent">
-                    <span className="text-2xl">Create</span>
+              <Link href="/services/social-media-marketing" className="group block h-full">
+                <div className="rounded-2xl p-8 bg-white/40 backdrop-blur-xl border border-white/30 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                  <div className="mb-4 text-blue-500 font-semibold uppercase tracking-wider text-sm flex items-center gap-2">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                      <span className="text-xl">C</span>
+                    </div>
+                    Create
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-primary group-hover:text-accent transition-colors">Marketing</h3>
-                  <p className="text-muted mb-8 leading-relaxed">
-                    Social Media Management, Campaign Images, and Expanding Business Reach from Local to Global.
+                  <h3 className="text-2xl font-bold mb-4 text-primary">
+                    Social Media Marketing
+                  </h3>
+                  <p className="text-muted leading-relaxed flex-grow">
+                    Instagram management, campaign strategy, content creation and brand growth for local businesses.
                   </p>
-                  <div className="h-48 bg-slate-100/50 rounded-lg overflow-hidden relative border border-slate-200/50">
-                    <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium">Marketing Visual</div>
-                  </div>
                 </div>
               </Link>
             </MotionSection>
 
             <MotionSection delay={0.4}>
-              <Link href="/services" className="block h-full">
-                <div className="rounded-2xl bg-white/40 backdrop-blur-xl border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-8 transition-all duration-300 hover:translate-y-[-6px] hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] h-full group cursor-pointer">
-                  <div className="mb-6 w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center text-highlight">
-                    <span className="text-2xl">Viral</span>
+              <Link href="/services/photography-videography" className="group block h-full">
+                <div className="rounded-2xl p-8 bg-white/40 backdrop-blur-xl border border-white/30 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer h-full flex flex-col">
+                  <div className="mb-4 text-orange-500 font-semibold uppercase tracking-wider text-sm flex items-center gap-2">
+                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600">
+                      <span className="text-xl">P</span>
+                    </div>
+                    Produce
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-primary group-hover:text-highlight transition-colors">Viral Campaigns</h3>
-                  <p className="text-muted mb-8 leading-relaxed">
-                    Best Photos & Visuals that spread like wildfire across social media, maximizing your organic reach.
+                  <h3 className="text-2xl font-bold mb-4 text-primary">
+                    Photography & Videography
+                  </h3>
+                  <p className="text-muted leading-relaxed flex-grow">
+                    Premium business photography services, commercial video production, and branding visuals for small business.
                   </p>
-                  <div className="h-48 bg-slate-100/50 rounded-lg overflow-hidden relative border border-slate-200/50">
-                    <div className="absolute inset-0 flex items-center justify-center text-slate-400 font-medium">Campaign Visual</div>
-                  </div>
                 </div>
               </Link>
             </MotionSection>
