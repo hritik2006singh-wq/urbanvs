@@ -64,10 +64,10 @@ export const Footer = () => {
                         <a href="/" className="hover:text-blue-500 transition-colors duration-300"><Linkedin className="w-5 h-5" /></a>
                     </div>
                     <a
-                        href="mailto:urbancistaservices@gmail.com"
+                        href="mailto:support@urbanvistaservices.com"
                         className="block mt-3 text-sm text-gray-400 hover:text-blue-500 transition-colors duration-300"
                     >
-                        urbancistaservices@gmail.com
+                        support@urbanvistaservices.com
                     </a>
                 </div>
             </div>

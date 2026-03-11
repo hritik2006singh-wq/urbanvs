@@ -1,30 +1,31 @@
-"use client";
-
-import React from 'react';
-import { GlassCard } from '@/components/ui/GlassCard';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
+'use client'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/lib/AuthContext'
 
 export default function SecurityPage() {
-    return (
-        <GlassCard className="p-8">
-            <h2 className="text-2xl font-bold mb-6">Security Settings</h2>
-            <form className="space-y-6 max-w-xl">
-                <div className="space-y-2">
-                    <label className="text-sm text-white/60">Current Password</label>
-                    <Input type="password" />
-                </div>
-                <div className="space-y-2">
-                    <label className="text-sm text-white/60">New Password</label>
-                    <Input type="password" />
-                </div>
-                <div className="space-y-2">
-                    <label className="text-sm text-white/60">Confirm New Password</label>
-                    <Input type="password" />
-                </div>
+    const { getToken } = useAuth()
+    const [data, setData] = useState<any>(null)
 
-                <Button>Change Password</Button>
-            </form>
-        </GlassCard>
-    );
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = await getToken()
+                if (!token) return
+
+                const res = await fetch('/api/user/stats', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+
+                if (!res.ok) throw new Error('Failed to fetch')
+                const jsonData = await res.json()
+                setData(jsonData)
+            } catch (error) {
+                console.error('Fetch error:', error)
+            }
+        }
+
+        fetchData()
+    }, [getToken])
+
+    return <div><h1>Security Settings</h1><pre>{JSON.stringify(data, null, 2)}</pre></div>
 }

@@ -1,37 +1,31 @@
-"use client";
-
-import React from 'react';
-import { GlassCard } from '@/components/ui/GlassCard';
-import { Button } from '@/components/ui/Button';
+'use client'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/lib/AuthContext'
 
 export default function OrdersPage() {
-    const orders = [
-        { id: 1, service: 'Get Better - Platinum', status: 'In Progress', date: '2023-10-25' },
-        { id: 2, service: 'Extra Photo', status: 'Completed', date: '2023-10-20' },
-    ];
+    const { getToken } = useAuth()
+    const [data, setData] = useState<any>(null)
 
-    return (
-        <div className="space-y-6">
-            <h2 className="text-2xl font-bold">My Orders</h2>
-            <div className="grid gap-4">
-                {orders.map((order) => (
-                    <GlassCard key={order.id} className="p-6 flex justify-between items-center">
-                        <div>
-                            <h3 className="font-bold">{order.service}</h3>
-                            <p className="text-sm text-white/60">Ordered on {order.date}</p>
-                        </div>
-                        <div className="text-right">
-                            <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${order.status === 'Completed' ? 'bg-green-500/20 text-green-400' : 'bg-primary/20 text-primary'
-                                }`}>
-                                {order.status}
-                            </span>
-                            <div className="mt-2">
-                                <Button size="sm" variant="outline">View Details</Button>
-                            </div>
-                        </div>
-                    </GlassCard>
-                ))}
-            </div>
-        </div>
-    );
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = await getToken()
+                if (!token) return
+
+                const res = await fetch('/api/user/orders', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+
+                if (!res.ok) throw new Error('Failed to fetch')
+                const jsonData = await res.json()
+                setData(jsonData)
+            } catch (error) {
+                console.error('Fetch error:', error)
+            }
+        }
+
+        fetchData()
+    }, [getToken])
+
+    return <div><h1>My Orders</h1><pre>{JSON.stringify(data, null, 2)}</pre></div>
 }

@@ -53,7 +53,7 @@ export function AuthPanel({ mode, onToggle }: AuthPanelProps) {
                         <div className="relative">
                             <input
                                 type="text"
-                                placeholder="John Doe"
+                                placeholder="Jshrey"
                                 required
                                 className="w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-xl pl-11 pr-4 py-3.5 text-[#E6EDF7] placeholder-[rgba(255,255,255,0.3)] focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6]/50 focus:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all duration-300"
                             />
@@ -67,7 +67,7 @@ export function AuthPanel({ mode, onToggle }: AuthPanelProps) {
                     <div className="relative">
                         <input
                             type="email"
-                            placeholder="you@example.com"
+                            placeholder="shrey@example.com"
                             required
                             className="w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-xl pl-11 pr-4 py-3.5 text-[#E6EDF7] placeholder-[rgba(255,255,255,0.3)] focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6]/50 focus:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all duration-300"
                         />

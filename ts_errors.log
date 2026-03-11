@@ -1,0 +1,1 @@
+app/api/orders/create/route.ts(21,17): error TS2353: Object literal may only specify known properties, and 'serviceType' does not exist in type 'Without<OrderCreateInput, OrderUncheckedCreateInput> & OrderUncheckedCreateInput'.

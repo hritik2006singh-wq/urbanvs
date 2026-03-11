@@ -7,7 +7,7 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 interface GlassCardProps extends HTMLMotionProps<"div"> {
     children: React.ReactNode;
     className?: string;
-    intensity?: 'low' | 'medium' | 'high' | 'none' | 'featured';
+    intensity?: 'low' | 'medium' | 'high' | 'none' | 'featured' | 'premium';
 }
 
 export const GlassCard: React.FC<GlassCardProps> = ({ children, className, intensity = 'none', ...props }) => {
@@ -17,6 +17,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({ children, className, inten
         high: 'bg-white/80 backdrop-blur-xl border border-white/70 shadow-lg',
         none: 'bg-white border border-slate-100 shadow-sm hover:shadow-md',
         featured: 'bg-white border border-blue-100 shadow-xl shadow-blue-900/5 scale-[1.01]',
+        premium: 'bg-white/10 backdrop-blur-lg border-white/20 shadow-xl rounded-[24px]',
     };
 
     return (

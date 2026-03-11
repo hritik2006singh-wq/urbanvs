@@ -2,7 +2,7 @@
 
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { StudioScene } from '@/components/hero/StudioScene';
+import StudioScene from '@/components/hero/StudioScene';
 
 import * as THREE from 'three';
 

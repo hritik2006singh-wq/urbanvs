@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/Button';
-import { Loader2 } from 'lucide-react';
+import { Loader2, CheckCircle } from 'lucide-react';
 
 export const ContactForm = () => {
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+    const [errorMessage, setErrorMessage] = useState("");
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -21,19 +22,29 @@ export const ContactForm = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
+        setStatus("loading");
+        setErrorMessage("");
 
         try {
-            // await addUserQuery({
-            //     name: formData.name,
-            //     email: formData.email,
-            //     message: `Phone: ${ formData.phone } \nType: ${ formData.businessType } \nDetails: ${ formData.businessDetails } `,
-            // });
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    full_name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    businessType: formData.businessType,
+                    businessDetails: formData.businessDetails
+                })
+            });
 
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
+            const result = await response.json();
 
-            alert("Thank you! We will get back to you shortly.");
+            if (!response.ok) {
+                throw new Error(result.error || "Failed to submit form.");
+            }
+
+            setStatus("success");
             setFormData({
                 name: "",
                 email: "",
@@ -41,11 +52,13 @@ export const ContactForm = () => {
                 businessDetails: "",
                 businessType: "Local Shop",
             });
-        } catch (error) {
-            console.error(error);
-            alert("Something went wrong. Please try again.");
-        } finally {
-            setIsSubmitting(false);
+
+            setTimeout(() => setStatus("idle"), 2500);
+
+        } catch (error: any) {
+            console.error("Contact Form Submission Error:", error?.message, error);
+            setErrorMessage("Something went wrong. Please try again or email us directly.");
+            setStatus("idle");
         }
     };
 
@@ -127,10 +140,33 @@ export const ContactForm = () => {
                 />
             </div>
 
-            <Button type="submit" size="lg" disabled={isSubmitting} className="w-full py-4 text-lg font-medium shadow-lg shadow-blue-500/20 flex items-center justify-center">
-                {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : null}
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-            </Button>
+            <div className="space-y-3">
+                <style>{`
+                    @keyframes scaleIn {
+                        from { transform: scale(0); opacity: 0; }
+                        to { transform: scale(1); opacity: 1; }
+                    }
+                    .animate-scale-in {
+                        animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                    }
+                `}</style>
+                <Button
+                    type="submit"
+                    size="lg"
+                    disabled={status === 'loading'}
+                    className={`w-full py-4 text-lg font-medium shadow-lg transition-all duration-300 flex items-center justify-center ${status === 'success'
+                            ? '!bg-green-500 hover:!bg-green-600 shadow-green-500/20 text-white'
+                            : 'shadow-blue-500/20'
+                        }`}
+                >
+                    {status === 'loading' && <Loader2 className="w-5 h-5 animate-spin mr-2" />}
+                    {status === 'success' && <CheckCircle className="w-5 h-5 mr-2 animate-scale-in" />}
+                    {status === 'loading' ? 'Sending...' : status === 'success' ? 'Sent Successfully' : 'Send Message'}
+                </Button>
+                {errorMessage && (
+                    <p className="text-red-500 text-sm text-center font-medium animate-in fade-in slide-in-from-top-1">{errorMessage}</p>
+                )}
+            </div>
         </form>
     );
 }
