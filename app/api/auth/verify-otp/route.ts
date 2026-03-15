@@ -2,9 +2,19 @@ export const runtime = 'nodejs'
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyOTP, updateUser } from '@/lib/firestore'
 import { adminAuth } from '@/lib/firebase-admin'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request)
+    const rl = rateLimit(`verify-otp:${ip}`, { limit: 10, windowSec: 300 }) // 10 per 5 min
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Too many verification attempts. Please wait.' },
+        { status: 429 }
+      )
+    }
+
     const { email, otp, type, uid } = await request.json()
     if (!email || !otp || !type) {
       return NextResponse.json(

@@ -7,18 +7,12 @@ export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get('Authorization')
     if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { error: 'Unauthorized' }, { status: 401 }
-      )
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
-    const decoded = await adminAuth.verifyIdToken(
-      authHeader.split('Bearer ')[1]
-    )
+    const decoded = await adminAuth.verifyIdToken(authHeader.split('Bearer ')[1])
     const user = await getUser(decoded.uid)
     if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' }, { status: 404 }
-      )
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
     const orders: any[] = await getUserOrders(decoded.uid)
@@ -35,9 +29,6 @@ export async function GET(request: NextRequest) {
         recentOrders: orders.slice(0, 3)
     })
   } catch (error: unknown) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Error' }, { status: 500 })
   }
 }

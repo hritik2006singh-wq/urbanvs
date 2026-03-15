@@ -2,11 +2,21 @@ export const runtime = 'nodejs'
 import { NextRequest, NextResponse } from 'next/server'
 import { createOTP } from '@/lib/firestore'
 import { Resend } from 'resend'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request)
+    const rl = rateLimit(`send-otp:${ip}`, { limit: 5, windowSec: 600 }) // 5 per 10 min
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Too many OTP requests. Try again in 10 minutes.' },
+        { status: 429, headers: { 'Retry-After': String(Math.ceil((rl.resetAt - Date.now()) / 1000)) } }
+      )
+    }
+
     const { email, type, name } = await request.json()
     if (!email || !type) {
       return NextResponse.json(

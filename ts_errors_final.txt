@@ -1,0 +1,2 @@
+﻿lib/prisma.ts(20,34): error TS2559: Type 'NeonQueryFunction<false, false>' has no properties in common with type 'PoolConfig'.
+

@@ -223,6 +223,11 @@ export async function verifyOTP(data: {
     return { success: false, error: 'OTP expired. Request a new one.' }
   }
 
+  if (recordData.attempts >= 4) {
+    await updateDoc(record.ref, { used: true })
+    return { success: false, error: 'Too many failed attempts. Please request a new code.' }
+  }
+
   const isValid = await bcrypt.compare(data.plainOtp, recordData.otpHash)
 
   if (!isValid) {

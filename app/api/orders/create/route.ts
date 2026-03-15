@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { adminAuth } from '@/lib/firebase-admin'
 import { createOrder, getUser } from '@/lib/firestore'
 import { Resend } from 'resend'
+import { sanitizeString } from '@/lib/sanitize'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -23,14 +24,19 @@ export async function POST(request: NextRequest) {
       { error: 'User not found' }, { status: 404 }
     )
 
+    const serviceName = sanitizeString(body.serviceName, 200)
+    const description = sanitizeString(body.description, 2000)
+    const budget = sanitizeString(body.budget, 100)
+    const timeline = sanitizeString(body.timeline, 100)
+
     const orderId = await createOrder({
       userId: decoded.uid,
       userEmail: decoded.email!,
       userName: user.name,
-      serviceName: body.serviceName,
-      description: body.description,
-      budget: body.budget,
-      timeline: body.timeline,
+      serviceName,
+      description,
+      budget,
+      timeline,
     })
 
     // Email admin

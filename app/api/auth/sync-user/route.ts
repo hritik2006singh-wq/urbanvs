@@ -2,6 +2,7 @@ export const runtime = 'nodejs'
 import { NextRequest, NextResponse } from 'next/server'
 import { adminAuth } from '@/lib/firebase-admin'
 import { upsertUser } from '@/lib/firestore'
+import { sanitizeString, sanitizePhone } from '@/lib/sanitize'
 
 const ADMIN_EMAILS = ['hritikcsingh@gmail.com']
 
@@ -19,11 +20,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const isAdmin = ADMIN_EMAILS.includes(decoded.email ?? '')
 
+    const sanitizedName = sanitizeString(body.name || decoded.name || 'User', 100)
+    const sanitizedPhone = sanitizePhone(body.phone)
+    const sanitizedBusinessType = sanitizeString(body.businessType, 100)
+
     const user = await upsertUser(decoded.uid, {
       email: decoded.email!,
-      name: body.name || decoded.name || 'User',
-      phone: body.phone,
-      businessType: body.businessType,
+      name: sanitizedName,
+      phone: sanitizedPhone,
+      businessType: sanitizedBusinessType,
       emailVerified: isAdmin ? true : (body.emailVerified ?? false),
       role: isAdmin ? 'ADMIN' : 'USER',
     })

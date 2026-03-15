@@ -3,11 +3,21 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createOTP, getUser } from '@/lib/firestore'
 import { adminAuth } from '@/lib/firebase-admin'
 import { Resend } from 'resend'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request)
+    const rl = rateLimit(`forgot-pwd:${ip}`, { limit: 3, windowSec: 900 }) // 3 per 15 min
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please wait 15 minutes.' },
+        { status: 429 }
+      )
+    }
+
     const { email } = await request.json()
     if (!email) {
       return NextResponse.json({ error: 'Email required' }, { status: 400 })
