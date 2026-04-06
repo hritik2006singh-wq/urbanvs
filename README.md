@@ -11,7 +11,7 @@
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![Three.js](https://img.shields.io/badge/Three.js-r182-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
 [![Status](https://img.shields.io/badge/Status-In_Development-orange?style=for-the-badge)]()
-[![License](https://img.shields.io/badge/License-Private-red?style=for-the-badge)](.)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 
 </div>
 
@@ -349,7 +349,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 
 <div align="center">
 
-**Built with ❤️ by Hritik Singh · Private / Proprietary · All rights reserved.**
+**Built with ❤️ by Hritik Singh**
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/hritik-singh-4b85783b2/)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github)](https://github.com/hritik2006singh-wq)
